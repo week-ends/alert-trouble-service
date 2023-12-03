@@ -3,7 +3,9 @@ package com.demo.alerttroubleservice.application.presentation;
 import com.demo.alerttroubleservice.domain.Receiver;
 import com.demo.alerttroubleservice.domain.repository.ReceiverRepository;
 import com.demo.alerttroubleservice.presentation.ReceiverController;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +26,13 @@ class ReceiverControllerTest {
     @Autowired
     private ReceiverRepository receiverRepository;
 
+    @AfterEach
+    public void afterEach() {
+        receiverRepository.deleteAll();
+    }
+
     @Test
+    @DisplayName("수신자 생성")
     public void createReceiver() {
         Receiver receiver = new Receiver();
         receiver.setNickname("testuser");
@@ -36,6 +44,7 @@ class ReceiverControllerTest {
     }
 
     @Test
+    @DisplayName("수신자 가입시 중복 닉네임 검사")
     public void createReceiverWithDuplicatedNickname() {
         Receiver receiver1 = new Receiver();
         receiver1.setNickname("testuser");
@@ -54,6 +63,7 @@ class ReceiverControllerTest {
         }
     }
     @Test
+    @DisplayName("전체 수신자 조회")
     public void getAllReceivers() {
         Receiver receiver1 = new Receiver();
         receiver1.setNickname("testuser1");
