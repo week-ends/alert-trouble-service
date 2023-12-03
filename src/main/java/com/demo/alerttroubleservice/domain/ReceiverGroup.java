@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "receiverGroups")
+@Table(name = "receiver_groups")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +14,7 @@ public class ReceiverGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String groupname;
-//    private String name;
 }
