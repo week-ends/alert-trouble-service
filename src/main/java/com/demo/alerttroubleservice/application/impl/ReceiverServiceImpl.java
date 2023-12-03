@@ -6,6 +6,7 @@ import com.demo.alerttroubleservice.domain.repository.ReceiverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,10 @@ public class ReceiverServiceImpl implements ReceiverService {
         }
         return receiverRepository.save(receiver);
     }
+
+    @Override
+    public List<Receiver> findAll(){
+        return receiverRepository.findAll();
+    };
 }
 
