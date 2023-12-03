@@ -33,10 +33,5 @@ public class ReceiverGroupController {
         return ResponseEntity.ok(groupname + "는 정상적으로 탈퇴 처리되었습니다.");
     }
 
-    @PostMapping("/{receiverGroupName}/join")
-    public ResponseEntity<Void> joinReceivers(@PathVariable String receiverGroupName, @RequestBody List<String> receiverNicknames) {
-        receiverGroupService.joinReceivers(receiverGroupName, receiverNicknames);
-        return ResponseEntity.ok().build();
-    }
 }
 
