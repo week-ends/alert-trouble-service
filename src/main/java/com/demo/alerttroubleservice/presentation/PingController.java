@@ -1,4 +1,4 @@
-package com.demo.alerttroubleservice.application.presentation;
+package com.demo.alerttroubleservice.presentation;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
