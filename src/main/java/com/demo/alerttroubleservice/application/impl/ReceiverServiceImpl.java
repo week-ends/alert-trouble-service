@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -19,15 +20,19 @@ public class ReceiverServiceImpl implements ReceiverService {
     @Override
     @Transactional(readOnly = true)
     public Optional<Receiver> findByNickname(String nickname) {
+        nickname = nickname.toLowerCase();
         return receiverRepository.findByNickname(nickname);
     }
     @Override
     @Transactional
     public Receiver createReceiver(Receiver receiver) {
-        Optional<Receiver> existingReceiver = receiverRepository.findByNickname(receiver.getNickname());
+        String nickname = receiver.getNickname().toLowerCase();
+        Optional<Receiver> existingReceiver = receiverRepository.findByNickname(nickname);
         if (existingReceiver.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 닉네임입니다.");
         }
+        receiver.setNickname(nickname);
+        System.out.println(receiver);
         return receiverRepository.save(receiver);
     }
 
@@ -41,6 +46,11 @@ public class ReceiverServiceImpl implements ReceiverService {
     @Override
     @Transactional
     public void deleteReceiver(String nickname) {
+        nickname = nickname.toLowerCase();
+        Optional<Receiver> existingReceiver = receiverRepository.findByNickname(nickname);
+        if (existingReceiver.isEmpty()) {
+            throw new IllegalArgumentException("회원정보를 찾을 수 없습니다.");
+        }
         receiverRepository.deleteByNickname(nickname);
     }
 }
