@@ -9,8 +9,6 @@ public interface ReceiverService {
 
     Receiver createReceiver(Receiver receiver);
 
-    Optional<Receiver> findByNickname(String nickname);
-
     List<Receiver> findAll();
 
     void deleteReceiver(String nickname);

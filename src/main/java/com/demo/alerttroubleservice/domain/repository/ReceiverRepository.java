@@ -9,8 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ReceiverRepository extends JpaRepository<Receiver, Long> {
 
-    boolean existsByNickname(String nickname);
-
     Optional<Receiver> findByNickname(String nickname);
 
     void deleteAll();

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -17,12 +16,6 @@ public class ReceiverServiceImpl implements ReceiverService {
     @Autowired
     private ReceiverRepository receiverRepository;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<Receiver> findByNickname(String nickname) {
-        nickname = nickname.toLowerCase();
-        return receiverRepository.findByNickname(nickname);
-    }
     @Override
     @Transactional
     public Receiver createReceiver(Receiver receiver) {
