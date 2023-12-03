@@ -13,5 +13,5 @@ public interface ReceiverGroupService {
 
     void deleteReceiverGroup(String groupname);
 
-    void joinReceivers(String receiverGroupName, List<String> receiverNicknames);\
+    void joinReceivers(String receiverGroupName, List<String> receiverNicknames);
 }

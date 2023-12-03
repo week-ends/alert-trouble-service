@@ -3,7 +3,6 @@ package com.demo.alerttroubleservice.application.impl;
 import com.demo.alerttroubleservice.application.ReceiverGroupService;
 import com.demo.alerttroubleservice.domain.ReceiverGroup;
 import com.demo.alerttroubleservice.domain.repository.ReceiverGroupRepository;
-import com.demo.alerttroubleservice.domain.repository.ReceiverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,26 +47,6 @@ public class ReceiverGroupServiceImpl implements ReceiverGroupService {
         receiverGroupRepository.deleteByGroupname(groupname);
     }
 
-    @Service
-    public class ReceiverGroupServiceImpl implements ReceiverGroupService {
 
-        @Autowired
-        private ReceiverGroupRepository receiverGroupRepository;
-
-        @Autowired
-        private ReceiverRepository receiverRepository;
-
-        @Override
-        public void joinReceivers(String receiverGroupName, List<String> receiverNicknames) {
-            ReceiverGroup receiverGroup = receiverGroupRepository.findByName(receiverGroupName);
-
-            for (String receiverNickname : receiverNicknames) {
-                Receiver receiver = receiverRepository.findByNickname(receiverNickname);
-                receiverGroup.getMembers().add(receiver);
-            }
-
-            receiverGroupRepository.save(receiverGroup);
-        }
-    }
 }
 
