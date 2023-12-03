@@ -26,5 +26,11 @@ public class ReceiverController {
         List<Receiver> receivers = receiverService.findAll();
         return ResponseEntity.ok(receivers);
     }
+
+    @DeleteMapping("/{nickname}")
+    public ResponseEntity<String> deleteReceiver(@PathVariable String nickname) {
+        receiverService.deleteReceiver(nickname);
+        return ResponseEntity.ok(nickname + "는 정상적으로 탈퇴 처리되었습니다.");
+    }
 }
 

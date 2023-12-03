@@ -5,6 +5,7 @@ import com.demo.alerttroubleservice.domain.Receiver;
 import com.demo.alerttroubleservice.domain.repository.ReceiverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +17,12 @@ public class ReceiverServiceImpl implements ReceiverService {
     private ReceiverRepository receiverRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Receiver> findByNickname(String nickname) {
         return receiverRepository.findByNickname(nickname);
     }
     @Override
+    @Transactional
     public Receiver createReceiver(Receiver receiver) {
         Optional<Receiver> existingReceiver = receiverRepository.findByNickname(receiver.getNickname());
         if (existingReceiver.isPresent()) {
@@ -29,8 +32,16 @@ public class ReceiverServiceImpl implements ReceiverService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Receiver> findAll(){
         return receiverRepository.findAll();
     };
+
+
+    @Override
+    @Transactional
+    public void deleteReceiver(String nickname) {
+        receiverRepository.deleteByNickname(nickname);
+    }
 }
 

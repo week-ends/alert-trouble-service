@@ -14,4 +14,6 @@ public interface ReceiverRepository extends JpaRepository<Receiver, Long> {
     Optional<Receiver> findByNickname(String nickname);
 
     void deleteAll();
+
+    Optional<Receiver> deleteByNickname(String nickname);
 }

@@ -84,5 +84,21 @@ class ReceiverControllerTest {
         assertEquals("testuser2", receivers.get(1).getNickname());
     }
 
+    @Test
+    @DisplayName("수신자 탈퇴")
+    public void deleteReceiver() {
+        // Receiver 생성
+        Receiver receiver = new Receiver();
+        receiver.setNickname("testuser");
+        receiverRepository.save(receiver);
+
+        // API 호출
+        receiverController.deleteReceiver("testuser");
+
+        // receiverRepository 확인
+        List<Receiver> receivers = receiverRepository.findAll();
+        assertEquals(0, receivers.size());
+    }
+
 }
 

@@ -12,4 +12,6 @@ public interface ReceiverService {
     Optional<Receiver> findByNickname(String nickname);
 
     List<Receiver> findAll();
+
+    void deleteReceiver(String nickname);
 }
