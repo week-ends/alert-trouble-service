@@ -27,10 +27,10 @@ public class ReceiverGroupController {
         return ResponseEntity.ok(receiverGroups);
     }
 
-    @DeleteMapping("/{nickname}")
-    public ResponseEntity<String> deleteReceiverGroup(@PathVariable String nickname) {
-        receiverGroupService.deleteReceiverGroup(nickname);
-        return ResponseEntity.ok(nickname + "는 정상적으로 탈퇴 처리되었습니다.");
+    @DeleteMapping("/{groupname}")
+    public ResponseEntity<String> deleteReceiverGroup(@PathVariable String groupname) {
+        receiverGroupService.deleteReceiverGroup(groupname);
+        return ResponseEntity.ok(groupname + "는 정상적으로 탈퇴 처리되었습니다.");
     }
 }
 
