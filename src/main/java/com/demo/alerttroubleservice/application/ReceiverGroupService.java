@@ -14,4 +14,6 @@ public interface ReceiverGroupService {
     List<ReceiverGroup> findAll();
 
     void deleteReceiverGroup(String groupname);
+
+    void delete(ReceiverGroup receiverGroup);
 }

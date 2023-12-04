@@ -15,4 +15,6 @@ public interface ReceiverGroupMembersAssociationRepository extends JpaRepository
     void deleteAll();
 
     List<Receiver> findByReceiverGroup(Optional<ReceiverGroup> actualReceiverGroup);
+
+    List<ReceiverGroupMembersAssociation> findByReceiverGroupAndReceiver(ReceiverGroup receiverGroup, Receiver receiver);
 }

@@ -31,6 +31,7 @@ public class ReceiverGroupController {
 
 
 
+
     @PostMapping
     public ResponseEntity<ReceiverGroup> createReceiverGroup(@RequestBody ReceiverGroup receiverGroup) {
         ReceiverGroup createdReceiverGroup = receiverGroupService.createReceiverGroup(receiverGroup);
@@ -67,6 +68,29 @@ public class ReceiverGroupController {
             ReceiverGroupMembersAssociation association = new ReceiverGroupMembersAssociation(receiverGroup.orElseGet(()->null), receiver);
             receiverGroupMembersAssociationRepository.save(association);
         }
+
+        return ResponseEntity.ok().build();
+    }
+    @DeleteMapping("/{receiverGroupName}/leave")
+    public ResponseEntity<?> leaveReceiverGroup(@PathVariable String receiverGroupName, @RequestParam String receiverNickname) {
+
+        Optional<ReceiverGroup> receiverGroup = receiverGroupService.findByGroupname(receiverGroupName);
+        if (receiverGroup.isEmpty()) {
+            throw new EntityNotFoundException("Receiver group not found: " + receiverGroupName);
+        }
+
+        Optional<Receiver> receiver = receiverService.findByNickname(receiverNickname);
+        if (receiver.isEmpty()) {
+            throw new EntityNotFoundException("Receiver not found: " + receiverNickname);
+        }
+
+        // ReceiverGroupMembersAssociation에서 데이터 삭제
+        List<ReceiverGroupMembersAssociation> associations = receiverGroupMembersAssociationRepository.findByReceiverGroupAndReceiver(receiverGroup.get(), receiver.get());
+        receiverGroupMembersAssociationRepository.deleteAll(associations);
+
+        // ReceiverGroup과 Receiver 삭제
+        receiverGroupService.delete(receiverGroup.get());
+        receiverService.delete(receiver.get());
 
         return ResponseEntity.ok().build();
     }
