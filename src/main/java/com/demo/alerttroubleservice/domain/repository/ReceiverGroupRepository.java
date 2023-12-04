@@ -9,9 +9,7 @@ import java.util.Optional;
 @Repository
 public interface ReceiverGroupRepository extends JpaRepository<ReceiverGroup, Long> {
 
-    Optional<ReceiverGroup> findByGroupname(String groupname);
-
     void deleteAll();
-
+    Optional<ReceiverGroup> findByGroupname(String groupname);
     Optional<ReceiverGroup> deleteByGroupname(String groupname);
 }

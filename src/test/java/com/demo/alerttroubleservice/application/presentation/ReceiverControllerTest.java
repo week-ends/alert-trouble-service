@@ -73,10 +73,9 @@ class ReceiverControllerTest {
 
         receiverRepository.save(receiver1);
         receiverRepository.save(receiver2);
-        // API 호출
+
         ResponseEntity<List<Receiver>> response = receiverController.getAllReceivers();
 
-        // 응답 확인
         assertEquals(HttpStatus.OK, response.getStatusCode());
         List<Receiver> receivers = response.getBody();
         assertEquals(2, receivers.size());
@@ -87,15 +86,12 @@ class ReceiverControllerTest {
     @Test
     @DisplayName("수신자 탈퇴")
     public void deleteReceiver() {
-        // Receiver 생성
         Receiver receiver = new Receiver();
         receiver.setNickname("testuser");
         receiverRepository.save(receiver);
 
-        // API 호출
         receiverController.deleteReceiver("testuser");
 
-        // receiverRepository 확인
         List<Receiver> receivers = receiverRepository.findAll();
         assertEquals(0, receivers.size());
     }

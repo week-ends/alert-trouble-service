@@ -9,9 +9,9 @@ public interface ReceiverGroupService {
 
     ReceiverGroup createReceiverGroup(ReceiverGroup receiverGroup);
 
+    Optional<ReceiverGroup> findByGroupname(String groupname);
+
     List<ReceiverGroup> findAll();
 
     void deleteReceiverGroup(String groupname);
-
-    void joinReceivers(String receiverGroupName, List<String> receiverNicknames);
 }

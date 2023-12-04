@@ -30,6 +30,11 @@ public class ReceiverGroupServiceImpl implements ReceiverGroupService {
     }
 
     @Override
+    public Optional<ReceiverGroup> findByGroupname(String groupname) {
+        return receiverGroupRepository.findByGroupname(groupname);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<ReceiverGroup> findAll(){
         return receiverGroupRepository.findAll();
@@ -46,7 +51,5 @@ public class ReceiverGroupServiceImpl implements ReceiverGroupService {
         }
         receiverGroupRepository.deleteByGroupname(groupname);
     }
-
-
 }
 

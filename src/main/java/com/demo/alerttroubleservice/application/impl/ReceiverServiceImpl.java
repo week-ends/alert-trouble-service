@@ -30,6 +30,11 @@ public class ReceiverServiceImpl implements ReceiverService {
     }
 
     @Override
+    public Optional<Receiver> findByNickname(String nickname) {
+        return Optional.empty();
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Receiver> findAll(){
         return receiverRepository.findAll();
@@ -45,6 +50,11 @@ public class ReceiverServiceImpl implements ReceiverService {
             throw new IllegalArgumentException("회원정보를 찾을 수 없습니다.");
         }
         receiverRepository.deleteByNickname(nickname);
+    }
+
+    @Override
+    public List<Receiver> findByNicknames(List<String> receiverNicknames) {
+        return receiverRepository.findByNicknames(receiverNicknames);
     }
 }
 

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "receivers")
 @Data
@@ -17,4 +19,7 @@ public class Receiver {
 
     @Column(nullable = false)
     private String nickname;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<ReceiverGroupMembersAssociation> receiverGroupMembersAssociations;
 }
