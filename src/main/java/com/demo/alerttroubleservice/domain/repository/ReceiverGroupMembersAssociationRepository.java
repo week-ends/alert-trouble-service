@@ -17,4 +17,6 @@ public interface ReceiverGroupMembersAssociationRepository extends JpaRepository
     List<Receiver> findByReceiverGroup(Optional<ReceiverGroup> actualReceiverGroup);
 
     List<ReceiverGroupMembersAssociation> findByReceiverGroupAndReceiver(ReceiverGroup receiverGroup, Receiver receiver);
+
+    List<Long> findGroupIdsByGroupName(String substring);
 }

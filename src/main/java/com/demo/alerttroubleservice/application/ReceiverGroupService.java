@@ -1,6 +1,7 @@
 package com.demo.alerttroubleservice.application;
 
 import com.demo.alerttroubleservice.domain.ReceiverGroup;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
